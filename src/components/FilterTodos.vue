@@ -9,6 +9,8 @@
       <option value="10">10</option>
       <option value="5">5</option>
     </select>
+    <label for="checkbox">Completed</label>
+    <input type="checkbox" id="checkbox" v-model="checked" @click="onCheck" />
   </div>
 </template>
 
@@ -16,7 +18,23 @@
 import { mapActions } from "vuex";
 export default {
   name: "FilterTodos",
-  methods: mapActions(["filterTodos"])
+  data() {
+    return {
+      checked: false
+    };
+  },
+  methods: {
+    ...mapActions(["filterTodos", "fetchTodos", "filterCompleted"]),
+    onCheck(e) {
+      this.checked != this.checked;
+
+      if (!this.checked) {
+        this.filterCompleted();
+      } else {
+        this.fetchTodos();
+      }
+    }
+  }
 };
 </script>
 
@@ -25,5 +43,8 @@ select {
   margin-top: 20px;
   padding: 6px;
   border: #41b883 1px solid;
+}
+label {
+  padding-left: 10px;
 }
 </style>

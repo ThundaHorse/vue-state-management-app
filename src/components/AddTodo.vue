@@ -25,6 +25,7 @@ export default {
     onSubmit(e) {
       e.preventDefault();
       this.addTodo(this.title);
+      this.title = "";
     }
   }
 };
@@ -42,9 +43,12 @@ input[type="text"] {
 }
 input[type="submit"] {
   flex: 2;
-  background: #41b883;
+  background: #48dfcb;
   color: #fff;
   border: 1px solid #41b883;
   cursor: pointer;
+}
+input[type="submit"]:hover {
+  background-color: #41b883;
 }
 </style>
