@@ -8,20 +8,6 @@
   </div>
 </template>
 
-<style>
-body {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  line-height: 1.6;
-  background: #e8f7f0;
-}
-.container {
-  max-width: 1100px;
-  margin: auto;
-  overflow: auto;
-  padding: 0 2rem;
-}
-</style>
-
 <script>
 import Todos from "./components/Todos";
 import AddTodo from "./components/AddTodo";
@@ -36,3 +22,17 @@ export default {
   }
 };
 </script>
+
+<style>
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  line-height: 1.6;
+  background: #e8f7f0;
+}
+.container {
+  max-width: 1100px;
+  margin: auto;
+  overflow: auto;
+  padding: 0 2rem;
+}
+</style>
