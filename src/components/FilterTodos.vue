@@ -25,7 +25,7 @@ export default {
   },
   methods: {
     ...mapActions(["filterTodos", "fetchTodos", "filterCompleted"]),
-    onCheck(e) {
+    onCheck() {
       this.checked != this.checked;
 
       if (!this.checked) {
