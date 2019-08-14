@@ -7,7 +7,9 @@ import axios from 'axios';
 Vue.config.productionTip = false;
 
 axios.defaults.baseURL =
-  process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : '/';
+  process.env.NODE_ENV === 'development'
+    ? 'https://whispering-peak-23705.herokuapp.com'
+    : '/';
 
 new Vue({
   store,
