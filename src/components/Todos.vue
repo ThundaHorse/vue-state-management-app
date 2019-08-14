@@ -2,7 +2,7 @@
   <div>
     <h3>Todos</h3>
     <div class="legend">
-      <span>Click a task to mark as complete</span>
+      <span>Double click a task to mark as complete</span>
       <span>
         <span class="incomplete-box"></span> = Incomplete
       </span>
