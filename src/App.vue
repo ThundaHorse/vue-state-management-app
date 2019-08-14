@@ -27,7 +27,7 @@ export default {
 body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   line-height: 1.6;
-  background: #e8f7f0;
+  background: #a7a9a8;
 }
 .container {
   max-width: 1100px;
