@@ -13,7 +13,7 @@
     <div class="todos">
       <div
         v-for="todo in allTodos"
-        @click="markAsCompleted(todo)"
+        @dblclick="markAsCompleted(todo)"
         :key="todo.id"
         class="todo"
         v-bind:class="{'is-complete': todo.completed}"
