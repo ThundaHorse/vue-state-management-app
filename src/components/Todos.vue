@@ -38,7 +38,7 @@ export default {
     // Access to the actions from the vuex store module todos.js
     ...mapActions(["fetchTodos", "deleteTodo", "updateTodo"]),
     markAsCompleted(todo) {
-      const todoToUpdate = {
+      var todoToUpdate = {
         id: todo.id,
         title: todo.title,
         completed: !todo.completed
