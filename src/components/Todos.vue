@@ -26,16 +26,11 @@
 </template>
 
 <script>
-// This maps getters from Vuex to the component as an array
 import { mapGetters, mapActions } from "vuex";
 
 export default {
   name: "Todos",
   methods: {
-    // Way that we implement or define what getters we want to use
-    // Allows use of getter which returns the state desired and delete
-
-    // Access to the actions from the vuex store module todos.js
     ...mapActions(["fetchTodos", "deleteTodo", "updateTodo"]),
     markAsCompleted(todo) {
       var todoToUpdate = {
@@ -47,11 +42,8 @@ export default {
       this.updateTodo(todoToUpdate);
     }
   },
-  // Points to the allTodos getter from the vuex store from todos.js
   computed: mapGetters(["allTodos"]),
-  // Lifecycle hook, we want this to load before the component loads
   created() {
-    // the fetchTodos or GET action from methods
     this.fetchTodos();
   }
 };
