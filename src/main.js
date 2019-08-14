@@ -10,6 +10,7 @@ axios.defaults.baseURL =
   process.env.NODE_ENV === 'development'
     ? 'https://whispering-peak-23705.herokuapp.com'
     : '/';
+
 new Vue({
   store,
   router,
