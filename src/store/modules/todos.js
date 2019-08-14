@@ -13,12 +13,7 @@ const getters = {
 const actions = {
   // GET
   async fetchTodos({ commit }) {
-    // const response = await axios.get('/api/todos');
-    //// To use setTodos, we use commit
-    //// First param is mutation we want to call, second is what we want to call
-    // commit('setTodos', response.data);
-
-    // Get the list of todos
+    // Get the list of todos from back-end
     axios
       .get('https://whispering-peak-23705.herokuapp.com/api/todos')
       .then((response) => {
@@ -29,20 +24,10 @@ const actions = {
   // POST
   // Adding a new Todo, this.title from AddTodo gets passed in @ title
   async addTodo({ commit }, title) {
-    //// Make request, get response which gets whole new todo and commit to todo mutation
-    // const response = await axios.post(
-    // '/api/todos',
-    //// Params for the new todo
-    // { title, completed: false }
-    // );
-    //// Calling mutation
-    // commit('newTodo', response.data);
-
     var params = {
       title,
       completed: false
     };
-
     axios
       .post('https://whispering-peak-23705.herokuapp.com/api/todos', params)
       .then((response) => {
@@ -53,15 +38,10 @@ const actions = {
   // DELETE
   // Remove from back-end
   async deleteTodo({ commit }, id) {
-    // In order to update as deleting
     await axios.delete(
       `https://whispering-peak-23705.herokuapp.com/api/todos/${id}`
     );
     commit('removeTodo', id);
-    // If using this, have to refresh page
-    // axios.delete(`/api/todos/${id}`).then(response => {
-    // commit('removeTodo', response.data);
-    // });
   },
 
   // LIMIT
