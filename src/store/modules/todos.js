@@ -19,9 +19,11 @@ const actions = {
     // commit('setTodos', response.data);
 
     // Get the list of todos
-    axios.get('/api/todos').then((response) => {
-      commit('setTodos', response.data);
-    });
+    axios
+      .get('https://whispering-peak-23705.herokuapp.com/api/todos')
+      .then((response) => {
+        commit('setTodos', response.data);
+      });
   },
 
   // POST
@@ -41,16 +43,20 @@ const actions = {
       completed: false
     };
 
-    axios.post('/api/todos', params).then((response) => {
-      commit('newTodo', response.data);
-    });
+    axios
+      .post('https://whispering-peak-23705.herokuapp.com/api/todos', params)
+      .then((response) => {
+        commit('newTodo', response.data);
+      });
   },
 
   // DELETE
   // Remove from back-end
   async deleteTodo({ commit }, id) {
     // In order to update as deleting
-    await axios.delete(`/api/todos/${id}`);
+    await axios.delete(
+      `https://whispering-peak-23705.herokuapp.com/api/todos/${id}`
+    );
     commit('removeTodo', id);
     // If using this, have to refresh page
     // axios.delete(`/api/todos/${id}`).then(response => {
@@ -66,14 +72,18 @@ const actions = {
       e.target.options[e.target.options.selectedIndex].innerText
     );
 
-    const response = await axios.get(`/api/todos/limit/${limit}`);
+    const response = await axios.get(
+      `https://whispering-peak-23705.herokuapp.com/api/todos/limit/${limit}`
+    );
     commit('setTodos', response.data);
   },
 
   // UPDATE
   async updateTodo({ commit }, todoToUpdate) {
     const response = await axios.patch(
-      `/api/todos/${todoToUpdate.id}`,
+      `https://whispering-peak-23705.herokuapp.com/api/todos/${
+        todoToUpdate.id
+      }`,
       todoToUpdate
     );
 
@@ -83,7 +93,9 @@ const actions = {
 
   // COMPLETED
   async filterCompleted({ commit }) {
-    const response = await axios.get('/api/todos/completed');
+    const response = await axios.get(
+      'https://whispering-peak-23705.herokuapp.com/api/todos/completed'
+    );
     commit('setTodos', response.data);
   }
 };
