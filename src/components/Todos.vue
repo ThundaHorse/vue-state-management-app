@@ -25,29 +25,6 @@
   </div>
 </template>
 
-<script>
-import { mapGetters, mapActions } from "vuex";
-
-export default {
-  name: "Todos",
-  methods: {
-    ...mapActions(["fetchTodos", "deleteTodo", "updateTodo"]),
-    markAsCompleted(todo) {
-      var todoToUpdate = {
-        id: todo.id,
-        title: todo.title,
-        completed: !todo.completed
-      };
-
-      this.updateTodo(todoToUpdate);
-    }
-  },
-  computed: mapGetters(["allTodos"]),
-  created() {
-    this.fetchTodos();
-  }
-};
-</script>
 
 <style scoped>
 .todos {
@@ -110,3 +87,28 @@ i:hover {
   }
 }
 </style>
+
+
+<script>
+import { mapGetters, mapActions } from "vuex";
+
+export default {
+  name: "Todos",
+  methods: {
+    ...mapActions(["fetchTodos", "deleteTodo", "updateTodo"]),
+    markAsCompleted(todo) {
+      var todoToUpdate = {
+        id: todo.id,
+        title: todo.title,
+        completed: !todo.completed
+      };
+
+      this.updateTodo(todoToUpdate);
+    }
+  },
+  computed: mapGetters(["allTodos"]),
+  created() {
+    this.fetchTodos();
+  }
+};
+</script>
