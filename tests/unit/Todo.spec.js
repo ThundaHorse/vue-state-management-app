@@ -1,77 +1,52 @@
-import { shallowMount, createLocalVue } from '@vue/test-utils';
+import { mount, shallowMount, createLocalVue } from '@vue/test-utils';
 import Vuex from 'vuex';
 import Todos from '@/components/Todos.vue';
-
+// Using localVue to create a scoped Vue constructor to make changes and not update the global Vue constructor
 const localVue = createLocalVue();
-
 localVue.use(Vuex);
 
 describe('Todos.vue', () => {
-  let actions;
+  let state;
+  let getters;
   let store;
-
-  const state = {
-    todos: []
-  };
-  const getters = {
-    allTodos: (state) => state.todos
-  };
-  const mutations = {
-    setTodos: (state, todos) => (state.todos = todos),
-    newTodo: (state, todo) => state.todos.unshift(todo),
-    removeTodo: (state, id) =>
-      (state.todos = state.todos.filter((todo) => todo.id !== id)),
-    updateTodo: (state, todoToUpdate) => {
-      const index = state.todos.findIndex(
-        (todo) => todo.id === todoToUpdate.id
-      );
-      if (index !== -1) {
-        state.todos.splice(index, 1, todoToUpdate);
-      }
-    }
-  };
+  let actions;
 
   beforeEach(() => {
-    actions = {
-      fetchTodos: jest.fn(),
-      addTodo: jest.fn(),
-      deleteTodo: jest.fn(),
-      filterTodos: jest.fn(),
-      updateTodo: jest.fn(),
-      filterCompleted: jest.fn()
-    };
-
-    store = new Vuex.Store({
-      actions,
-      state,
-      getters,
-      mutations
-    });
+    // state = {
+    //   todos: [
+    //     {
+    //       id: 1,
+    //       title: 'Test',
+    //       completed: true
+    //     },
+    //     {
+    //       id: 2,
+    //       title: 'Test 2',
+    //       completed: false
+    //     }
+    //   ]
+    // };
+    // getters = {
+    //   allTodos: (state) => state.todos
+    // };
+    // actions = {
+    //   fetchTodos: jest.fn(),
+    //   deleteTodo: jest.fn(),
+    //   updateTodo: jest.fn()
+    // };
+    // store = new Vuex.Store({
+    //   getters,
+    //   state,
+    //   state,
+    //   actions
+    // });
   });
-
-  it('dispatches "fetchTodos" when component is loaded', () => {
-    // console.log(mutations.setTodos);
-    const wrapper = shallowMount(Todos, { store, localVue });
-    // console.log(wrapper.vm);
-    expect(actions.fetchTodos).toHaveBeenCalled();
-  });
-});
-
-describe('Todo.vue', () => {
-  it('should import vuex', () => {});
 
   it('has a created hook', () => {
-    expect(typeof Todos.created).toBe('function');
+    expect(Todos.computed).toBeDefined();
   });
 
-  it('has a mapGetters function', () => {
-    const getters = Object.keys(Todos.computed);
-    console.log(Todos.computed.allTodos);
-    expect(getters[0]).toBe('allTodos');
-  });
-
-  it('has fetchTodos function', () => {
-    const methods = Todos.methods;
-    expect(typeof methods.fetchTodos).toBe('function');
+  it('has a update todo method', () => {
+    expect(Todos.methods).toHaveProperty('updateTodo');
   });
 });

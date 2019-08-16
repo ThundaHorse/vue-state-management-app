@@ -18,7 +18,7 @@
         class="todo"
         v-bind:class="{'is-complete': todo.completed}"
       >
-        {{ todo.title }}
+        <p>{{ todo.title }}</p>
         <i @click.prevent="deleteTodo(todo.id)" class="fas fa-trash-alt"></i>
       </div>
     </div>
@@ -103,7 +103,7 @@ export default {
         completed: !todo.completed
       };
 
-      this.updateTodo(todoToUpdate);
+      this.updatedo(todoToUpdate);
     }
   },
   computed: mapGetters(["allTodos"]),
