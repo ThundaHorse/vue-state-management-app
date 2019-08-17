@@ -52,9 +52,9 @@ describe('Todos.vue', () => {
     expect(actions.fetchTodos).toHaveBeenCalled();
   });
 
-  // it('has a update todo method', () => {
-  //   const wrapper = shallowMount(Todos, { store, localVue });
+  it('has a update todo method', () => {
+    const wrapper = shallowMount(Todos, { store, localVue });
 
-  //   expect(Todos.methods.markAsCompleted).toBeDefined();
-  // });
+    expect(Todos.methods.markAsCompleted).toBeDefined();
+  });
 });
