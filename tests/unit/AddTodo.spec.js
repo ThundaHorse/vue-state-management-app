@@ -9,45 +9,59 @@ describe('AddTodo.vue', () => {
   let actions;
   let store;
   let data;
+  let state;
 
   beforeEach(() => {
     data = {
       title: 'test'
     };
 
+    state = {
+      todos: [
+        {
+          id: 1,
+          title: 'Test',
+          completed: false
+        },
+        {
+          id: 2,
+          title: 'Test 2',
+          completed: true
+        }
+      ]
+    };
+
     actions = {
-      onSubmit: jest.fn((e) => {
-        e.preventDefault();
-        this.addTodo();
-      }),
+      onSubmit: jest.fn(),
       addTodo: jest.fn()
     };
 
     store = new Vuex.Store({
-      actions
+      actions,
+      state,
+      data
     });
   });
 
-  it('should call addTodo if the form is submit even with no input', () => {
+  it('should call addTodo if the form is submit and input has a value', () => {
     const wrapper = shallowMount(AddTodo, { localVue, store });
     const form = wrapper.find('form');
+    const input = wrapper.find('input.todoTitle');
     form.element.value = 'Submit';
     form.trigger('submit');
+    input.element.value = 'test';
+
     expect(actions.addTodo).toHaveBeenCalled();
+    expect(input.element.value).toBe('test');
   });
 
-  it('should set title to the form input on submission', () => {
+  it('should call addTodo if the form is submit and input has no value', () => {
     const wrapper = shallowMount(AddTodo, { localVue, store });
     const form = wrapper.find('form');
-    const input = wrapper.find('input#title');
-    const sub = wrapper.find('input#submit');
+    const input = wrapper.find('input.todoTitle');
+    form.element.value = 'Submit';
+    form.trigger('submit');
 
-    sub.element.value = 'Submit';
-    input.element.value = 'test';
-    form.trigger('Submit');
-
-    // expect(actions.addTodo).toHaveBeenCalled();
-    expect(actions.onSubmit).toHaveBeenCalled();
-    expect(data.title).toBe('test');
+    expect(actions.addTodo).toHaveBeenCalled();
   });
 });
