@@ -3,7 +3,6 @@ import Vuex from 'vuex';
 import Todos from '@/components/Todos.vue';
 import todoModule from '../../src/store/modules/todos';
 
-// Using localVue to create a scoped Vue constructor to make changes and not update the global Vue constructor
 const localVue = createLocalVue();
 localVue.use(Vuex);
 
