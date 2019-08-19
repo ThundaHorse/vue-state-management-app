@@ -54,13 +54,31 @@ describe('FilterTodos.vue', () => {
     expect(FilterTodos.methods.onCheck).toBeDefined();
   });
 
-  // it('should call filterTodos when select option is changed', () => {
-  //   const wrapper = shallowMount(FilterTodos, { localVue, store });
-  //   let selector = wrapper.find('select');
+  it('should call filterTodos when select option is changed', () => {
+    const wrapper = shallowMount(FilterTodos, { localVue, store });
+    const selector = wrapper.find('select');
+    selector.setValue('10');
+    selector.trigger('onChange');
+    expect(actions.filterTodos).toHaveBeenCalled();
+  });
 
-  //   selector.element.value = '10';
-  //   selector.trigger('10');
+  it('should call onCheck when the checkbox is checked', () => {
+    const wrapper = shallowMount(FilterTodos, { localVue, store });
+    const checker = wrapper.find('input.checkbox');
+    checker.trigger('click');
 
-  //   expect(actions.filterTodos).toHaveBeenCalled();
-  // });
+    expect(actions.filterCompleted).toHaveBeenCalled();
+  });
+
+  it('should call fetchTodos if filterCompleted is not called', () => {
+    const wrapper = shallowMount(FilterTodos, { localVue, store });
+    const checker = wrapper.find('input.checkbox');
+    checker.trigger('click');
+
+    if (data.checked) {
+      expect(actions.fetchTodos).toHaveBeenCalled();
+    } else {
+      expect(actions.filterCompleted).toHaveBeenCalled();
+    }
+  });
 });

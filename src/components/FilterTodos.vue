@@ -10,7 +10,7 @@
       <option value="5">5</option>
     </select>
     <label for="checkbox">Completed</label>
-    <input type="checkbox" id="checkbox" v-model="checked" @click="onCheck" />
+    <input type="checkbox" class="checkbox" v-model="checked" @click="onCheck" />
   </div>
 </template>
 
