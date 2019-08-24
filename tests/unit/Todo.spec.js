@@ -53,7 +53,9 @@ describe('Todos.vue', () => {
 
   it('has a update todo method', () => {
     const wrapper = shallowMount(Todos, { store, localVue });
+    const update = wrapper.find('p');
 
-    expect(Todos.methods.markAsCompleted).toBeDefined();
+    // expect(Todos.methods.markAsCompleted).toBeDefined();
+    expect(actions.updateTodo).toHaveBeenCalled();
   });
 });
